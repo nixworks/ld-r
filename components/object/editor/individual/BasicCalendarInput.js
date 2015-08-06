@@ -1,6 +1,15 @@
 import React from 'react';
+import DateTimeField from 'react-bootstrap-datetimepicker';
+import moment from 'moment';
+import StyleSheet from 'react-style';
 
-class BasicIndividualInput extends React.Component {
+let styles = StyleSheet.create({
+                    datetimepicker: {
+                      color: 'red'
+                    }       
+             });
+
+class BasicCalendarInput extends React.Component {
     constructor(props) {
         super(props);
         let v = this.props.spec.value;
@@ -12,9 +21,6 @@ class BasicIndividualInput extends React.Component {
         this.state = {value: v};
     }
     componentDidMount() {
-        if(!this.props.noFocus){
-            React.findDOMNode(this.refs.basicIndividualInput).focus();
-        }
     }
     handleKeyDown(evt) {
         if(this.props.allowActionByKey){
@@ -48,22 +54,10 @@ class BasicIndividualInput extends React.Component {
         this.props.onDataEdit(event.target.value.trim());
         this.setState({value: event.target.value});
     }
-    render() {
-        let placeholder = '';
-        //placeholder can come from config or direct property
-        if(this.props.config && this.props.config.placeholder){
-            placeholder = this.props.config.placeholder[0];
-        }else{
-            if(this.props.placeholder){
-                placeholder = this.props.placeholder;
-            }
-        }
-        return (
-            <div className="ui">
-                <input ref="basicIndividualInput" type="text" value={this.state.value} placeholder={placeholder} onChange={this.handleChange.bind(this)} onKeyDown={this.handleKeyDown.bind(this)}/>
-            </div>
-        );
+    render () {
+	return <div ref="datetimepicker" style={styles.datetimepicker}> <DateTimeField /> </div>;
     }
+
 }
 
-export default BasicIndividualInput;
+export default BasicCalendarInput;

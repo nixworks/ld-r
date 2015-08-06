@@ -12,6 +12,7 @@
   "homepage": "http://risis.eu",
   "dependencies": {
     "semantic-ui": "~2.0.7",
-    "animate.css": "~3.3.0"
+    "animate.css": "~3.3.0",
+    "bootstrap-css": "~3.3.4"
   }
 }

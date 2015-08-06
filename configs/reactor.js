@@ -24,10 +24,17 @@ export default {
             'generic': {
                 //if enabled, will categorize properties in different tabs based on property categories
                 usePropertyCategories: 1,
-                propertyCategories: ['general', 'provenance', 'technical' ],
                 //used when creating random resources
                 dynamicResourceDomain: ['http://example.org'],
                 resourceReactor: ['Resource']
+            },
+	    'http://rdfs.org/ns/void#Dataset' : {
+		treatAsResourceType: 1,
+		propertyCategories: ['general', 'provenance', 'technical' ],
+	    },
+            'http://rdfs.org/ns/void#DatasetDescription' : {
+                treatAsResourceType: 1,
+                propertyCategories: ['general', 'provenance' ],
             }
         },
         property: {
