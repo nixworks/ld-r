@@ -1,4 +1,5 @@
 import loadDataset from '../actions/loadDataset';
+import loadDatasetsList from '../actions/loadDatasetsList';
 import loadResource from '../actions/loadResource';
 import loadUsersList from '../actions/loadUsersList';
 import loadFacets from '../actions/loadFacets';
@@ -6,13 +7,20 @@ import {appFullTitle, appShortTitle, authGraphName, baseResourceDomain} from '..
 
 export default {
     home: {
-        path: '/',
+/*        path: '/',
         method: 'get',
         handler: require('../components/Home'),
         label: appShortTitle,
         action: (context, payload, done) => {
             context.dispatch('UPDATE_PAGE_TITLE', { pageTitle: appFullTitle + ' | Home'});
             done();
+        }*/
+        path: '/',
+        method: 'get',
+        handler: require('../components/DatasetsList'),
+        label: 'Datasets',
+        action: (context, payload, done) => {
+                context.executeAction(loadDatasetsList, {}, done);
         }
     },
     about: {
@@ -43,11 +51,10 @@ export default {
         //if no id is provided -> will start by defaultGraphName in reactor.config
         path: '/datasets',
         method: 'get',
-        handler: require('../components/Datasets'),
+        handler: require('../components/DatasetsList'),
         label: 'Datasets',
         action: (context, payload, done) => {
-            context.dispatch('UPDATE_PAGE_TITLE', { pageTitle: appFullTitle + ' | Datasets'});
-            done();
+		context.executeAction(loadDatasetsList, {}, done);
         }
     },
     dataset: {

@@ -15,6 +15,16 @@ class DatasetUtil{
         }
         return property;
     }
+    parseDatasetsList(body) {
+      let parsed = JSON.parse(body);
+      let output=[];
+      if(parsed.results.bindings.length){
+        parsed.results.bindings.forEach(function(el) {
+          output.push({title: el.title.value, name: el.title.value, v: el.subject.value, g: el.dataset.value });
+        });
+        return output;
+      }
+    }
     getResourceFocusType(config){
         let output = [];
         if(config){

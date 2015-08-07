@@ -13,7 +13,19 @@ class DatasetQuery{
          ';
         this.query='';
     }
-    countResourcesByType(graphName, type) {
+	getDatasetsList() {
+	/*jshint multistr: true */
+		this.query = '\
+		SELECT DISTINCT ?dataset ?subject ?title WHERE { \
+			GRAPH ?dataset { \
+				?subject a void:DatasetDescription ; \
+					dcterms:title ?title . \
+			} \
+		} ORDER BY ASC(?title) \
+		';
+		return this.prefixes + this.query;
+	}
+	countResourcesByType(graphName, type) {
         let st = '?resource a <'+ type + '> .';
         //will get all the types
         if(!type.length || (type.length && !type[0]) ){
