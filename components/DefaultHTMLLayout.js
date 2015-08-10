@@ -10,7 +10,7 @@ class DefaultHTMLLayout extends React.Component {
                 <meta charSet="utf-8" />
                 <title>{this.props.context.getStore(ApplicationStore).getPageTitle()}</title>
                 <meta name="viewport" content="width=device-width, user-scalable=no" />
-                <link href="/bower_components/bootstrap-css/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+                <link href="/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
                 <link href="/bower_components/semantic-ui/dist/semantic.min.css" rel="stylesheet" type="text/css" />
                 <link href="/bower_components/animate.css/animate.min.css" rel="stylesheet" type="text/css" />
                 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
