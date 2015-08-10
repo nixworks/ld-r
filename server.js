@@ -72,13 +72,13 @@ server.use(fetchrPlugin.getXhrPath(), fetchrPlugin.getMiddleware());
 server.use((req, res, next) => {
     //check user credentials
     //stop fluxible rendering if not authorized
-    if(enableAuthentication){
+/*    if(enableAuthentication){
         if(!req.isAuthenticated() && publicRoutes.indexOf(req.url) === -1){
             //store referrer in session
             req.session.redirectTo = req.url;
             return res.redirect('/login');
         }
-    }
+    }*/
     let context = app.createContext({
         req: req // The fetchr plugin depends on this
         // xhrContext: {
