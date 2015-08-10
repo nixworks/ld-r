@@ -3,12 +3,6 @@ import DateTimeField from 'react-bootstrap-datetimepicker';
 import moment from 'moment';
 import StyleSheet from 'react-style';
 
-let styles = StyleSheet.create({
-                    datetimepicker: {
-                      color: 'red'
-                    }       
-             });
-
 class BasicCalendarInput extends React.Component {
     constructor(props) {
         super(props);
@@ -21,6 +15,16 @@ class BasicCalendarInput extends React.Component {
         this.state = {value: v};
     }
     componentDidMount() {
+	let self = this;
+	setTimeout(function () {
+		jQuery('.glyphicon-calendar').click();
+		jQuery('.bootstrap-datetimepicker-widget').addClass('animated pulse');
+		jQuery('.date .form-control').keypress(function( event ) {
+			if ( event.which == 13 ) {
+				self.props.onEnterPress();
+			}
+		});		
+	},100);
     }
     handleKeyDown(evt) {
         if(this.props.allowActionByKey){
@@ -54,8 +58,14 @@ class BasicCalendarInput extends React.Component {
         this.props.onDataEdit(event.target.value.trim());
         this.setState({value: event.target.value});
     }
+    handleSelect(value) {
+        this.props.onDataEdit(value.trim());
+        this.setState({value: value});
+    }
     render () {
-	return <div ref="datetimepicker" style={styles.datetimepicker}> <DateTimeField /> </div>;
+	return 	<div ref="datetimepicker"> 
+			<DateTimeField dateTime={moment(this.state.value).format("YYYY-MM-DD\\THH:mm:ss\\Z")} format="YYYY-MM-DD\\THH:mm:ss\\Z" inputFormat="YYYY-MM-DD\\THH:mm:ss\\Z" onChange={this.handleSelect.bind(this)} /> 
+		</div>;
     }
 
 }
