@@ -15,11 +15,12 @@ class BasicCalendarInput extends React.Component {
         this.state = {value: v};
     }
     componentDidMount() {
+	let currentComp = this.refs.datetimepicker.getDOMNode();
 	let self = this;
 	setTimeout(function () {
-		jQuery('.glyphicon-calendar').click();
-		jQuery('.bootstrap-datetimepicker-widget').addClass('animated pulse');
-		jQuery('.date .form-control').keypress(function( event ) {
+		jQuery(currentComp).find('.glyphicon-calendar').click();
+		jQuery(currentComp).find('.bootstrap-datetimepicker-widget').addClass('animated pulse');
+		jQuery(currentComp).find('.date .form-control').keypress(function( event ) {
 			if ( event.which == 13 ) {
 				self.props.onEnterPress();
 			}
@@ -64,7 +65,7 @@ class BasicCalendarInput extends React.Component {
     }
     render () {
 	return 	<div ref="datetimepicker"> 
-			<DateTimeField dateTime={moment(this.state.value).format("YYYY-MM-DD\\THH:mm:ss\\Z")} format="YYYY-MM-DD\\THH:mm:ss\\Z" inputFormat="YYYY-MM-DD\\THH:mm:ss\\Z" onChange={this.handleSelect.bind(this)} /> 
+			<DateTimeField dateTime={moment(this.state.value).utc().format("YYYY-MM-DD\\THH:mm:ss\\Z")} format="YYYY-MM-DD\\THH:mm:ss\\Z" inputFormat="YYYY-MM-DD\\THH:mm:ss\\Z" onChange={this.handleSelect.bind(this)} /> 
 		</div>;
     }
 
